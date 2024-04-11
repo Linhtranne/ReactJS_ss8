@@ -1,16 +1,21 @@
 const PI: number = Math.PI;
 interface Square{
-    kind: "Square",
-    sideLength:"Number"
-}
+    sideLength:number;
+} 
 interface Circle{
-    kind: "Circle",
-    radius: "Number"
+    radius:number;
 }
-function caculateArena(shape: any):number{
-    if(shape.kind === "Square"){
-        return shape.sideLength **2;
-}else if(shape.kind === "Circle"){
-    return PI*(shape.radius**2);
+
+let calculateArea = (shape: Square | Circle): number => {
+    if ('sideLength' in shape) {
+        return shape.sideLength ** 2;
+    } else if ('radius' in shape) {
+        return Math.PI * shape.radius ** 2;
+    } else {
+        throw new Error("Invalid object type");
+    }
 }
+let Square1 :Square={
+    sideLength:10,
 }
+console.log(calculateArea(Square1))
